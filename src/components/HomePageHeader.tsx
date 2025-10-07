@@ -20,9 +20,7 @@ const HomePageHeader: FC = () => (
       </div>
       <div className="flex justify-between gap-3">
         <div>
-          <a href="">
             <InstagramLogo />
-          </a>
         </div>
         <div>
           <a href="https://www.linkedin.com/feed/">
