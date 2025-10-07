@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ShoppingCartIcon as HeroShoppingdCartIcon } from "@heroicons/react/16/solid";
 import { RootState } from "@/store/app";
-import { useSelector, UseStore } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 

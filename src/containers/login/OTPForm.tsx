@@ -13,7 +13,9 @@ const OTPForm: FC = () => {
   });
   const [getCode, setGetCode] = useState(false);
   const [timer, setTimer] = useState("");
-  const phoneNumber = useSelector((state: RootState) => state.phone.phoneNumber);
+  const phoneNumber = useSelector(
+    (state: RootState) => state.phone.phoneNumber
+  );
 
   const getCodeHandler = () => {
     if (count === 0) {
@@ -29,7 +31,8 @@ const OTPForm: FC = () => {
     const seconds = count % 60;
     const total = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     setTimer(total);
-  }, [count]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count, startCountdown]);
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);

@@ -4,6 +4,7 @@ import { RootDispatch } from "@/store/app";
 import { useDispatch } from "react-redux";
 import { itemsAction } from "@/store/items";
 import Link from "next/link";
+import Image from "next/image";
 
 const Products: FC<ItemValue> = ({ id, title, price, image, rate }) => {
   const dispatch = useDispatch<RootDispatch>();
@@ -17,10 +18,12 @@ const Products: FC<ItemValue> = ({ id, title, price, image, rate }) => {
         <div className="flex-col md:w-40 md:h-30 sm:w-60 sm:h-50">
           <div className="flex-col items-center">
             <Link href={`/${id}`}>
-              <img
+              <Image
                 src={image}
                 alt="product image"
                 className="md:w-30 md:h-40 sm:w-60 sm:h-60"
+                width={48}
+                height={48}
               />
             </Link>
             <li className="pt-4 pl-5">{title.substring(0, 20)}</li>

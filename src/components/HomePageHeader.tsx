@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import SearchIcon from "../containers/Home/HomeIcons/SearchIcon";
-import UserDashboard from "../containers/Home/UserDashboard";
+// import UserDashboard from "../containers/Home/UserDashboard";
 import ShoppingCartIcon from "./icons/ShoppingCartIcon";
 import InstagramLogo from "../containers/Home/HomeIcons/InstagramLogo";
 import LinkedInLogo from "../containers/Home/HomeIcons/LinkedInLogo";
@@ -20,7 +20,9 @@ const HomePageHeader: FC = () => (
       </div>
       <div className="flex justify-between gap-3">
         <div>
-          <InstagramLogo />
+          <a href="">
+            <InstagramLogo />
+          </a>
         </div>
         <div>
           <a href="https://www.linkedin.com/feed/">

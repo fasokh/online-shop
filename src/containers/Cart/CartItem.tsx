@@ -1,8 +1,9 @@
 import React, { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { itemsAction, ItemValue } from "@/store/items";
-import { RootDispatch, RootState } from "@/store/app";
+import { RootDispatch } from "@/store/app";
 import Link from "next/link";
+import Image from "next/image";
 
 const CartItem: FC<ItemValue> = ({ id, title, image, price, quantity }) => {
   const dispatch = useDispatch<RootDispatch>();
@@ -21,7 +22,7 @@ const CartItem: FC<ItemValue> = ({ id, title, image, price, quantity }) => {
         <div className="flex flex-col sm:text-sm">
           <Link href={`/${id}`}>
             <li>
-              <img src={image} alt="title" className="w-12 h-12" />
+              <Image src={image} alt="title" className="w-12 h-12" width={48} height={48} />
             </li>
           </Link>
           <div className="felx felx-col">

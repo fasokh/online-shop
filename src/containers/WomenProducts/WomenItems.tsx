@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import { FC, useEffect } from "react";
 import { RootState, RootDispatch } from "@/store/app";
 import { useSelector, useDispatch } from "react-redux";

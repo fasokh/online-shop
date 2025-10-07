@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { HiX, HiMenu } from "react-icons/hi";
 import { useRouter } from "next/router";
 import HomeIcon from "./icons/HomeIcon";
+import Link from "next/link";
 
 const Menu: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,9 +79,9 @@ const Menu: FC = () => {
               </button>
             </li>
             <li className="inline px-4 py-6 hover:bg-gray-100">
-              <a className="inline-block py-3" href="/">
+              <Link className="inline-block py-3" href="/">
                 تجهیزات
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

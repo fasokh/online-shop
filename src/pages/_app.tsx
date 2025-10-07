@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import { Provider } from "react-redux";
 import store, { RootDispatch } from "@/store/app";
 import FetchData from "@/store/actionCenter";
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 type Props = AppProps;
@@ -14,8 +14,8 @@ const DataInitializer = ({ children }: { children: React.ReactNode }) => {
   const [query] = useState("");
 
   useEffect(() => {
-    dispatch(FetchData({ query: "", category: "" }));
-  }, [dispatch]);
+    dispatch(FetchData({ query, category: "" }));
+  }, [dispatch , query]);
 
   return <>{children}</>;
 };

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { useDispatch } from "react-redux";
 import FetchData from "@/store/actionCenter";

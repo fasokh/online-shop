@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import { FC, useEffect } from "react";
 import { RootState, RootDispatch } from "@/store/app";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +11,7 @@ const MenItems: FC = () => {
   const { men, status } = useSelector((state: RootState) => state.product);
 
   useEffect(() => {
-    dispatch(FetchData({query: "men"}));
+    dispatch(FetchData({ query: "men" }));
   }, [dispatch]);
 
   if (status === STATUS.ERROR) {

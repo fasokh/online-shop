@@ -12,7 +12,7 @@ const ProductItems: FC = () => {
 
   useEffect(() => {
     dispatch(FetchData({query}));
-  }, [dispatch]);
+  }, [dispatch , query]);
 
   if (status === STATUS.ERROR) {
     return <p>...Error</p>;
