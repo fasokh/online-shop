@@ -47,10 +47,13 @@ const FetchData = createAsyncThunk<
     );
 
     return { all: filterData, men: menProducts, women: womenProducts };
-  } catch (err: any) {
-    console.log("Fetch error:", err);
-    return rejectWithValue(err.message || "Error fetching data");
-    // throw err;
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      // err از نوع Error هست، پس message رو می‌تونیم استفاده کنیم
+      return rejectWithValue(err.message);
+    }
+    // اگه err از نوع Error نبود
+    return rejectWithValue("Error fetching data");
   }
 });
 
