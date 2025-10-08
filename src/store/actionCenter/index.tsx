@@ -1,14 +1,14 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
   description: string;
   category: string;
   image: string;
-  ratind?: {
+  rating?: {
     rate: number;
     count: number;
   };
@@ -22,38 +22,36 @@ interface FetchResult {
   women: Product[];
 }
 
-const FetchData = createAsyncThunk<FetchResult, Filters>(
-  "fetchData",
-  async (filters: Filters) => {
-    const { query = "" } = filters;
-    try {
-      const response = await axios.get<Product[]>(
-        "https://fakestoreapi.com/products"
-      );
-      const data: Product[] = response.data; //اینجا اومدم از try استفاده کردم
+const FetchData = createAsyncThunk<
+  FetchResult,
+  Filters,
+  { rejectValue: string }
+>("fetchData", async (filters: Filters, { rejectWithValue }) => {
+  const { query = "" } = filters;
+  try {
+    const response = await axios.get<Product[]>(
+      "https://fakestoreapi.com/products"
+    );
+    const data: Product[] = response.data; //اینجا اومدم از try استفاده کردم
 
-      console.log("Fetched Data:", data);
+    const filterData = data.filter((product) => {
+      return product.title.toLowerCase().includes(query.toLowerCase());
+    });
 
-      const filterData = data.filter((product) => {
-        return product.title.toLowerCase().includes(query.toLowerCase());
-      });
+    const menProducts = filterData.filter((product) =>
+      product.title.toLowerCase().includes("men")
+    );
 
-      console.log("Filtered Data:", filterData);
+    const womenProducts = filterData.filter((product) =>
+      product.title.toLowerCase().includes("women")
+    );
 
-      const menProducts = filterData.filter((product) =>
-        product.title.toLowerCase().includes("men")
-      );
-
-      const womenProducts = filterData.filter((product) =>
-        product.title.toLowerCase().includes("women")
-      );
-
-      return { all: filterData, men: menProducts, women: womenProducts };
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
+    return { all: filterData, men: menProducts, women: womenProducts };
+  } catch (err: any) {
+    console.log("Fetch error:", err);
+    return rejectWithValue(err.message || "Error fetching data");
+    // throw err;
   }
-);
+});
 
 export default FetchData;
