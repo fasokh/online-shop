@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export interface Product {
@@ -14,12 +15,18 @@ export interface Product {
   };
 }
 
+export interface ItemValue extends Product {
+  quantity: number;
+  rate: number;
+  totalPrice: number;
+}
+
 type Filters = { query?: string; category?: string };
 
 interface FetchResult {
-  all: Product[];
-  men: Product[];
-  women: Product[];
+  all: ItemValue[];
+  men: ItemValue[];
+  women: ItemValue[];
 }
 
 const FetchData = createAsyncThunk<
@@ -46,7 +53,19 @@ const FetchData = createAsyncThunk<
       product.title.toLowerCase().includes("women")
     );
 
-    return { all: filterData, men: menProducts, women: womenProducts };
+    // return { all: filterData, men: menProducts, women: womenProducts };
+    const mapToItemValue = (product: Product): ItemValue => ({
+      ...product,
+      quantity: 1,
+      rate: product.rating?.rate ?? 0,
+      totalPrice: product.price,
+    });
+
+    return {
+      all: filterData.map(mapToItemValue),
+      men: menProducts.map(mapToItemValue),
+      women: womenProducts.map(mapToItemValue),
+    };
   } catch (err: unknown) {
     if (err instanceof Error) {
       // err از نوع Error هست، پس message رو می‌تونیم استفاده کنیم

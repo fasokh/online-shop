@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import { ItemValue } from "../items";
 import FetchData from "../actionCenter";
-import { Product } from "../actionCenter";
+import { ItemValue } from "../actionCenter";
 
 export const STATUS = {
   IDLE: "idle",
@@ -10,9 +10,9 @@ export const STATUS = {
 };
 
 type ProductType = {
-  all: Product[];
-  men: Product[];
-  women: Product[];
+  all: ItemValue[];
+  men: ItemValue[];
+  women: ItemValue[];
   status: string;
 };
 
